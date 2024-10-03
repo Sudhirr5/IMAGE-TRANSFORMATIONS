@@ -1,43 +1,64 @@
 
 ##i)Image Translation
-import numpy as np
 import cv2
-import matplotlib.pyplot as plt
-input_img=cv2.imread("color image of flower.jpg")
-input_img=cv2.cvtColor(input_img,cv2.)
-plt.axis('off')
-plt.imshow(input_img)
-plt.show()
-rows,cols,dim=input_img.shape
-M=np.float32([[1,0,20],
-             [0,1,50],
-             [0,0,1]])
-translated_img=cv2.
-plt.axis('off')
-
-
+import numpy as np
+from matplotlib import pyplot as plt
+def show_image(image):
+    plt.figure(figsize=(6, 6))
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.axis('off')
+    plt.show()
+image_url = r"C:\Users\admin\Downloads\gray .jpg"
+image = cv2.imread(image_url)
+tx = 50 
+ty = 30  
+translation_matrix = np.float32([[1, 0, tx], [0, 1, ty]]) 
+translated_image = cv2.warpAffine(image, translation_matrix, (image.shape[1], image.shape[0]))
+print("Original Image:")
+show_image(image)
+print("Translated Image:")
+show_image(translated_image)
 
 ##ii)Image Scaling
 
-scaled_img=cv2.warpPerspective(input_img,M,(cols,rows))
-plt.axis('off')
-plt.imshow(scaled_img)
-plt.show()
-
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+def show_image(image):
+    plt.figure(figsize=(6, 6))
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.axis('off')
+    plt.show()
+image_url = r"C:\Users\admin\Downloads\gray .jpg"
+image = cv2.imread(image_url)
+scale_x = 1.5  
+scale_y = 1.5 
+scaled_image = cv2.resize(image, None, fx=scale_x, fy=scale_y, interpolation=cv2.INTER_LINEAR)
+print("Original image:")
+show_image(image)
+print("Scaled Image:")
+show_image(scaled_image)
 
 ##iii)Image Shearing
-M_x=np.float32([[1,0.2,0],
-               [0,1,0],
-               [0,0,1]])
-M_y=np.
-sheared_img_xaxis=cv2.warpPerspective(input_img,M_x,(cols,rows))
-sheared_img_yaxis=
-plt.axis('off')
-plt.imshow(sheared_img_xaxis)
-plt.show()
-plt.axis
-plt.show()
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
 
+def show_image(image):
+    plt.figure(figsize=(6, 6))
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.axis('off')
+    plt.show()
 
+image_url = r"C:\Users\admin\Downloads\gray .jpg"
+image = cv2.imread(image_url)
+shear_factor_x = 0.5  
+shear_factor_y = 0.2  
+shear_matrix = np.float32([[1, shear_factor_x, 0], [shear_factor_y, 1, 0]])
 
+sheared_image = cv2.warpAffine(image, shear_matrix, (image.shape[1], image.shape[0]))
 
+print("Original Image:")
+show_image(image)
+print("Sheared Image:")
+show_image(sheared_image)
